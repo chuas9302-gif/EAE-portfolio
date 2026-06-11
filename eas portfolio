@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EAE Portfolio - Accountancy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0b1220;
+            color: #eaeaea;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #1c2f55 0%, #0b1220 100%);
+            padding: 20px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(28, 47, 85, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid #d4af37;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 20px 0;
+            color: white;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: #d4af37;
+            color: #0b1220;
+            transform: scale(1.05);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #d4af37;
+            color: #0b1220;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+
+        .cta-button:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 12%;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section:nth-child(even) {
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        h2 {
+            color: #d4af37;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #d4af37;
+        }
+
+        .card {
+            background: #121a2e;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #d4af37;
+            transition: all 0.3s ease;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .card p {
+            line-height: 1.8;
+            color: #c0c0c0;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            color: #c0c0c0;
+        }
+
+        .card li {
+            margin-bottom: 10px;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 30px;
+            background: #121a2e;
+            border-radius: 12px;
+            border-top: 3px solid #d4af37;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .stat h3 {
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            color: #a0a0a0;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #1c2f55 0%, #0b1220 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #d4af37;
+            color: #0b1220;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            background: white;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            background: #000;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                padding: 10px 0;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                margin-top: 80px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                font-size: 10px;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#stats">Achievements</a>
+    <a href="#business">Entrepreneurship</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#cca">CCA</a>
+    <a href="#service">Service</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-content">
+        <img src="https://via.placeholder.com/160?text=Your+Photo" alt="Your Profile Photo">
+        <h1>Your Name</h1>
+        <p>Accountancy / Banking & Finance Applicant</p>
+        <div class="badge">EAE Portfolio</div>
+        <a href="#about" class="cta-button">Explore My Portfolio</a>
+    </div>
+</div>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>I am an aspiring Accountancy and Banking & Finance student with a strong interest in business, numbers, and financial systems. I enjoy analyzing problems and understanding how businesses operate. Through my varied experiences in leadership, entrepreneurship, and community service, I have developed a comprehensive understanding of financial responsibility and business acumen.</p>
+    </div>
+</section>
+
+<section id="stats">
+    <h2>Key Achievements</h2>
+    <div class="grid">
+        <div class="stat">
+            <h3>4</h3>
+            <p>Years as Subject Rep</p>
+        </div>
+        <div class="stat">
+            <h3>50+</h3>
+            <p>VIA Hours Completed</p>
+        </div>
+        <div class="stat">
+            <h3>SYF</h3>
+            <p>Distinction Award</p>
+        </div>
+        <div class="stat">
+            <h3>1</h3>
+            <p>Carousell Business</p>
+        </div>
+    </div>
+</section>
+
+<section id="business">
+    <h2>Entrepreneurship</h2>
+    <div class="card">
+        <p><strong>Carousell Business Management</strong></p>
+        <p>Managed a Carousell business handling product listings, customer communications, and financial transactions. This experience provided practical knowledge in:</p>
+        <ul>
+            <li>Inventory management and pricing strategies</li>
+            <li>Customer relationship management</li>
+            <li>Financial tracking and profit analysis</li>
+            <li>Business growth and scalability</li>
+        </ul>
+    </div>
+</section>
+
+<section id="leadership">
+    <h2>Leadership Experience</h2>
+    <div class="card">
+        <p><strong>Subject Representative - Chemistry & Design & Technology (4 Years)</strong></p>
+        <p>Served as Subject Representative for Chemistry and Design & Technology over four consecutive years. Through this role, I developed and refined essential leadership skills:</p>
+        <ul>
+            <li>Communication with school administration and student body</li>
+            <li>Organization of subject-related events and initiatives</li>
+            <li>Responsibility and accountability</li>
+            <li>Problem-solving and conflict resolution</li>
+        </ul>
+    </div>
+</section>
+
+<section id="cca">
+    <h2>Co-Curricular Activities</h2>
+    <div class="card">
+        <p><strong>Chinese Ensemble - SYF Distinction</strong></p>
+        <p>Recipient of SYF (Singapore Youth Festival) Distinction award for performances with the Chinese Ensemble. Performed in various school events including Chinese New Year celebrations and school performances, demonstrating:</p>
+        <ul>
+            <li>Dedication and discipline in artistic pursuits</li>
+            <li>Teamwork and collaboration</li>
+            <li>Excellence in performance</li>
+            <li>Time management alongside academics</li>
+        </ul>
+    </div>
+</section>
+
+<section id="service">
+    <h2>Community Service</h2>
+    <div class="card">
+        <p><strong>50+ Voluntary Involvement & Action (VIA) Hours</strong></p>
+        <p>Actively contributed to community service initiatives, including:</p>
+        <ul>
+            <li><strong>Old Folks Home Performances:</strong> Brought joy and entertainment to elderly residents</li>
+            <li><strong>Organizing Activities:</strong> Planned and executed engaging activities for elderly participants</li>
+            <li><strong>School VIA Events:</strong> Participated in various school-organized community service projects</li>
+        </ul>
+        <p>Through these experiences, I developed empathy, social responsibility, and a commitment to giving back to the community.</p>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-content">
+        <div>
+            <p>I'm always interested in connecting with others who share a passion for finance, business, and community service. Feel free to reach out through any of the channels below:</p>
+            <div class="social-links">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div>
+            <p style="color: #d4af37; font-weight: 600;">Contact Information</p>
+            <p>Email: your.email@example.com</p>
+            <p>Phone: +65 XXXX XXXX</p>
+            <p>Location: Singapore</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 EAE Portfolio | Accountancy / Banking & Finance</p>
+    <p>Built with passion and designed for excellence</p>
+</footer>
+
+</body>
+</html>
